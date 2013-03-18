@@ -13,6 +13,14 @@ class News_Model
     {
         $this->db = new MysqlImproved_Driver;
     }
+
+    /**
+     * Fetches article based on supplied name
+     *
+     * @param string $author
+     *
+     * @return array $article
+     */
     /**
      * Fetches article based on supplied name
      *

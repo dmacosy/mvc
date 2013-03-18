@@ -27,9 +27,9 @@ class MysqlImproved_Driver extends Database_Library
     {
         //connection parameters
         $host = 'localhost';
-        $user = 'username';
-        $password = 'password';
-        $database = 'my_test';
+        $user = 'root';
+        $password = 'spider11';
+        $database = 'magento';
 
         //your implementation may require these...
         $port = NULL;
@@ -40,7 +40,7 @@ class MysqlImproved_Driver extends Database_Library
         (
             $host , $user , $password , $database , $port , $socket
         );
-
+        //var_dump($this->connection);
         return TRUE;
     }
 
@@ -129,4 +129,3 @@ class MysqlImproved_Driver extends Database_Library
         return $this->connection->real_escape_string($data);
     }
 }
-

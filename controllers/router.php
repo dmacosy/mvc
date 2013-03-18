@@ -4,52 +4,52 @@
  */
 
     //Automatically includes files containing classes that are called
-    function __autoload($className)
+function __autoload($className)
+{
+    // Parse out filename where class should be located
+    // This supports names like 'Example_Model' as well as 'Example_Two_Model'
+    list($suffix, $filename) = preg_split('/_/', strrev($className), 2);
+    $filename = strrev($filename);
+    $suffix = strrev($suffix);
+
+    //select the folder where class should be located based on suffix
+    switch (strtolower($suffix))
     {
-        // Parse out filename where class should be located
-        // This supports names like 'Example_Model' as well as 'Example_Two_Model'
-        list($suffix, $filename) = preg_split('/_/', strrev($className), 2);
-        $filename = strrev($filename);
-        $suffix = strrev($suffix);
+        case 'model':
 
-        //select the folder where class should be located based on suffix
-        switch (strtolower($suffix))
-        {
-            case 'model':
+            $folder = '/models/';
 
-                $folder = '/models/';
+            break;
 
-                break;
+        case 'library':
 
-            case 'library':
+            $folder = '/libraries/';
 
-                $folder = '/libraries/';
+            break;
 
-                break;
+        case 'driver':
 
-            case 'driver':
+            $folder = '/libraries/drivers/';
 
-                $folder = '/libraries/drivers/';
-
-                break;
-        }
-
-        //compose file name
-        $file = SERVER_ROOT . $folder . strtolower($filename) . '.php';
-
-        //fetch file
-        if (file_exists($file))
-        {
-            //get file
-            include_once($file);
-        }
-        else
-        {
-            //file does not exist!
-            die("File '$filename' containing class '$className' not found in'$folder'.");
-        }
+            break;
     }
 
+    //compose file name
+    $file = SERVER_ROOT . $folder . strtolower($filename) . '.php';
+
+    //fetch file
+    if (file_exists($file))
+    {
+        //get file
+        include_once($file);
+    }
+    else
+    {
+        //file does not exist!
+        die("File '$filename' containing class '$className' not found in '$folder'.");
+
+    }
+}
     //fetch the passed request
     $request = $_SERVER['QUERY_STRING'];
 

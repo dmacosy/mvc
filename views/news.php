@@ -7,6 +7,7 @@
         <hr/>
         <h2>News</h2>
         <h4><?=$data['title'];?></h4>
+        <h4>By: <?=$data['author'];?></h4>
         <p><?=$data['content'];?></p>
     </body>
 </html>

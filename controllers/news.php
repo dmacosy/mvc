@@ -27,6 +27,7 @@ class News_Controller
 
         //assign article data to view
         $view->assign('title' , $article['title']);
+        $view->assign('author' , $article['author']);
         $view->assign('content' , $article['content']);
     }
 } 
